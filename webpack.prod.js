@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 
 module.exports = {
@@ -25,6 +26,24 @@ module.exports = {
                 test: /styles.css$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
               },
+              {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                  {
+                    loader: 'file-loader',
+                  },
+                ],
+              },
+              {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                  loader: "babel-loader",
+                  options: {
+                    presets: ['@babel/preset-env']
+                  }
+                }
+              },
         
         ]
     },
@@ -37,6 +56,11 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             filename:'styles.[fullhash].css',
-        })
+        }),
+        new CopyPlugin({
+            patterns: [
+                 {from:'src/assets/', to:'assets/'}
+            ]
+        }),
     ]
 }
