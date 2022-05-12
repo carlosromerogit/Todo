@@ -1,7 +1,8 @@
 import '../src/styles.css';
+import { TodoList } from "../src/js/class/todo-list.class";
 
-const printMessage = ()=>{
-    console.log('Hello World');
-}
+const todoList = new TodoList();
 
-printMessage();
+todoList.addTask('Aprender JavaScript')
+todoList.addTask('Aprender Node')
+console.log(todoList)
