@@ -1,5 +1,8 @@
-const todoList = document.querySelector('.todo-list');
-const clearCompleted = document.querySelector('.clear-completed')
+import { TodoList } from "../class/todo-list.class";
+
+const todoListUL = document.querySelector('.todo-list');
+const clearCompleted = document.querySelector('.clear-completed');
+const todoList = new TodoList();
 
 export const renderList = (tasks = [])=>{
     const liFragment = document.createDocumentFragment();
@@ -38,7 +41,7 @@ export const renderList = (tasks = [])=>{
         li.append(inputEdit);
         liFragment.append(li);
     })
-    todoList.append(liFragment);
+    todoListUL.append(liFragment);
 }
 export const renderTask = (task)=>{
     const li = document.createElement('li');
@@ -72,20 +75,18 @@ export const renderTask = (task)=>{
 
     li.append(div);
     li.append(inputEdit);
-    todoList.append(li);
+    todoListUL.append(li);
 };
 
-console.log(clearCompleted)
 clearCompleted.addEventListener('click', ()=>{
-const todoListArray = Array.from(todoList.children);
+
+const todoListArray = Array.from(todoListUL.children);
 
 todoListArray.forEach(element =>{
     const completedElement = element.classList.contains('completed');
     if(completedElement){
-        todoList.removeChild(element);
+        todoListUL.removeChild(element);
     }
 })
-
-
-
+    todoList.deleteCompletedTasks();
 });
