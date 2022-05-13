@@ -8,4 +8,11 @@ export class TodoList {
         const task = new Todo(title);
         this._tasks.push(task);
     }
+    completeTask(id){
+        this._tasks.forEach(task =>{
+            if(task.id == id){
+                task.completed = !task.completed;
+            }
+        })
+    }
 }
