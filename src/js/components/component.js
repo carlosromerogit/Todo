@@ -1,4 +1,5 @@
 const todoList = document.querySelector('.todo-list');
+const clearCompleted = document.querySelector('.clear-completed')
 
 export const renderList = (tasks = [])=>{
     const liFragment = document.createDocumentFragment();
@@ -72,4 +73,19 @@ export const renderTask = (task)=>{
     li.append(div);
     li.append(inputEdit);
     todoList.append(li);
-}
+};
+
+console.log(clearCompleted)
+clearCompleted.addEventListener('click', ()=>{
+const todoListArray = Array.from(todoList.children);
+
+todoListArray.forEach(element =>{
+    const completedElement = element.classList.contains('completed');
+    if(completedElement){
+        todoList.removeChild(element);
+    }
+})
+
+
+
+});
