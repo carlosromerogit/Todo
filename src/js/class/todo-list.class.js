@@ -23,7 +23,6 @@ export class TodoList {
     }
     deleteCompletedTasks(){
         this._tasks = this._tasks.filter( task => !task.completed )
-        console.log(this._tasks)
         this.setToLocalStorage();
     }
     setToLocalStorage(){
