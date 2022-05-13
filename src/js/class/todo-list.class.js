@@ -15,4 +15,7 @@ export class TodoList {
             }
         })
     }
+    deleteTask(id){
+        this._tasks = this._tasks.filter(task => task.id != id);
+    }
 }

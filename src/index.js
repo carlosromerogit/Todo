@@ -32,8 +32,17 @@ todoListHTML.addEventListener('click', (event)=>{
     const liHTML    = event.target.parentElement.parentElement;
     const localName = event.target.localName;
     const id        = event.target.parentElement.parentElement.dataset.id;
-    if(localName.includes('input')){
-        todoList.completeTask(id);
-        liHTML.classList.toggle('completed');
+    
+    switch(localName){
+        case "input":
+            todoList.completeTask(id);
+            liHTML.classList.toggle('completed');
+            break;
+        case "label":
+            break;
+        case "button":
+            todoList.deleteTask(id);
+            todoListHTML.removeChild(liHTML)
+            break;
     }
 })
